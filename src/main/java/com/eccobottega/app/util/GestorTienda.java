@@ -15,11 +15,14 @@ public class GestorTienda implements Visualizador{
 
     @Override
     public void mostrarProductosDisponibles(List<Producto> productosDisponibles) {
-        System.out.println("Bebidas disponibles:");
+
+        System.out.println("Productos disponibles:");
         for (Producto producto : productosDisponibles) {
             System.out.println(producto.getId() + ". " + producto.getDescripcion() + " - Precio: " + producto.getPrecioUnidad());
+            }
+
         }
-    }
+
 
     public static Producto seleccionarProducto(List<Producto> productosDisponibles, Scanner scanner) {
         System.out.print("Seleccione un producto por su ID: ");

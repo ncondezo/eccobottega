@@ -87,27 +87,39 @@ public class AplicacionTienda {
                 case 1:
 
                     List<Producto> bebidasDisponibles = tiendaSeleccionada.getProductosDisponiblesPorCategoria(CATEGORIA_BEBIDA);
-                    gestorProductos.mostrarProductosDisponibles(bebidasDisponibles);
-                    Producto bebidaSeleccionada = GestorTienda.seleccionarProducto(bebidasDisponibles,scanner);
-                    ManejoCarrito.agregarProductoAlCarrito(bebidaSeleccionada,carrito,scanner);
+                    if(!bebidasDisponibles.isEmpty()) {
+                        gestorProductos.mostrarProductosDisponibles(bebidasDisponibles);
+                        Producto bebidaSeleccionada = GestorTienda.seleccionarProducto(bebidasDisponibles, scanner);
+                        ManejoCarrito.agregarProductoAlCarrito(bebidaSeleccionada, carrito, scanner);
+                    }else {
+                        System.out.println("    --- Nada por aquí ---");
+                    }
 
                     break;
 
                 case 2:
 
                     List<Producto> envasadosDisponibles = tiendaSeleccionada.getProductosDisponiblesPorCategoria(CATEGORIA_ENVASADO);
-                    gestorProductos.mostrarProductosDisponibles(envasadosDisponibles);
-                    Producto envasadoSeleccionado =GestorTienda.seleccionarProducto(envasadosDisponibles,scanner);
-                    ManejoCarrito.agregarProductoAlCarrito(envasadoSeleccionado,carrito,scanner);
+                    if(!envasadosDisponibles.isEmpty()) {
+                        gestorProductos.mostrarProductosDisponibles(envasadosDisponibles);
+                        Producto envasadoSeleccionado = GestorTienda.seleccionarProducto(envasadosDisponibles, scanner);
+                        ManejoCarrito.agregarProductoAlCarrito(envasadoSeleccionado, carrito, scanner);
+                    }else {
+                        System.out.println("    --- Nada por aquí ---");
+                    }
 
                     break;
 
                 case 3:
 
                     List<Producto> limpiezaDisponibles = tiendaSeleccionada.getProductosDisponiblesPorCategoria(CATEGORIA_LIMPIEZA);
-                    gestorProductos.mostrarProductosDisponibles(limpiezaDisponibles);
-                    Producto limpiezaSeleccionado =GestorTienda.seleccionarProducto(limpiezaDisponibles,scanner);
-                    ManejoCarrito.agregarProductoAlCarrito(limpiezaSeleccionado,carrito,scanner);
+                    if(!limpiezaDisponibles.isEmpty()) {
+                        gestorProductos.mostrarProductosDisponibles(limpiezaDisponibles);
+                        Producto limpiezaSeleccionado = GestorTienda.seleccionarProducto(limpiezaDisponibles, scanner);
+                        ManejoCarrito.agregarProductoAlCarrito(limpiezaSeleccionado, carrito, scanner);
+                    }else{
+                        System.out.println("    --- Nada por aquí ---");
+                    }
 
                     break;
 
