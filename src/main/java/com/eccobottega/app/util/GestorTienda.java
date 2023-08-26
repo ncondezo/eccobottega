@@ -13,7 +13,7 @@ public class GestorTienda implements Visualizador{
     private Scanner scanner = new Scanner(System.in);
     private static Tienda tienda;
 
-    @Override
+    @Override                           //  SE LISTAN LOS PRODUCTOS DISPONIBLES
     public void mostrarProductosDisponibles(List<Producto> productosDisponibles) {
 
         System.out.println("Productos disponibles:");
@@ -23,7 +23,7 @@ public class GestorTienda implements Visualizador{
 
         }
 
-
+        //  SE FILTRA AL PRODUCTO POR SU ID
     public static Producto seleccionarProducto(List<Producto> productosDisponibles, Scanner scanner) {
         System.out.print("Seleccione un producto por su ID: ");
         String idSeleccionado = scanner.nextLine().toUpperCase();
@@ -34,6 +34,7 @@ public class GestorTienda implements Visualizador{
                 .orElse(null);
     }
 
+    //  SE VALIDA QUE LA OPCION SELECCIONADA EN EL MENU (PARA EL SWITCH) SEA VÁLIDA
     public static int obtenerOpcionValida(Scanner scanner) {
         int opcion = -1;
         boolean entradaValida = false;
@@ -55,6 +56,8 @@ public class GestorTienda implements Visualizador{
     }
 
 
+
+    // MÉTODO PARA FILTRAR LOS PRODUCTOS CON UTILIDADES INFERIORES A UN PORCENTAJE INGRESADO POR CONSOLA
     public List<String> listarProductosConUtilidadesInferiores(Scanner scanner,Map<String, List<Producto>> map) {
         System.out.println("Ingrese porcentaje de utilidad: ");
         if (scanner.hasNextInt()) {
@@ -69,11 +72,15 @@ public class GestorTienda implements Visualizador{
         }
 
     }
+
+    // MÉTODO QUE CALCULA EL PORCENTAJE DE GANANCIA DE UN PRODUCTO (SE UTILIZA EN EL MÉTODO ANTERIOR, listarProductosConUtilidadesInferiores)
     private double calcularPorcentajeGanancia(Producto producto) {
         double precioVenta = producto.getPrecioUnidad();
         double costoVenta = producto.getCostoUnidad();
         return ((precioVenta - costoVenta) / costoVenta * 100);
     }
+
+    // MÉTODO QUE LISTA LOS PRODUCTOS QUE IMPLEMENTAN LA INTERFAZ COMESTIBLE Y NO SON IMPORTADOS, SEGÚN EL PORCENTAJE INGRESADO
 
     public List<String> obtenerComestiblesConMenorDescuento(Scanner scanner,Map<String, List<Producto>> map) {
         System.out.println("Ingrese porcentaje de descuento: ");
@@ -85,17 +92,14 @@ public class GestorTienda implements Visualizador{
                 List<Producto> productos = entry.getValue();
 
                 for (Producto producto : productos) {
-                    if (producto instanceof Comestible) {
+                    if (producto instanceof Comestible && !((Comestible) producto).esImportado()) {
                         Comestible comestible = (Comestible) producto;
-                        if (comestible.esImportado()) {
-                            if (comestible instanceof AplicableDescuento) {
-                                AplicableDescuento aplicableDescuento = (AplicableDescuento) comestible;
-                                if (aplicableDescuento.getPorcentajeDescuento() < porcentajeDescuento) {
-                                    comestibles.add(producto);
-                                }
+                            AplicableDescuento aplicableDescuento = (AplicableDescuento) comestible;
+                            if (aplicableDescuento.getPorcentajeDescuento() < porcentajeDescuento) {
+                                comestibles.add(producto);
                             }
 
-                        }
+
                     }
                 }
             }
@@ -106,6 +110,7 @@ public class GestorTienda implements Visualizador{
         }
     }
 
+    // AQUÍ SE CONVIERTE LA LIST A MAYUSCULA Y SE ORDENA DE FORMA ACSENCENDENTE
     public static List<String> convertirMayusculasYOrdenar(List<Producto> lista) {
         ArrayList<String> listaMayusculas = new ArrayList<>();
 

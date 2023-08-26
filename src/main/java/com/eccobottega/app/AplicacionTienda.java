@@ -38,11 +38,14 @@ public class AplicacionTienda {
         Producto poet = new Limpieza(idLimpieza.generarId(),"Limpiapisos Poet",30,8.3,8.0,TipoAplicacion.PISOS);
         Producto ala = new Limpieza(idLimpieza.generarId(),"Jabón Líquido Ala",100,23.00,22.00,ROPA);
 
+        // Se setean descuentos a algunos productos
+        atun.setPorcentajeDescuento(0.1);
         aceitunas.setPorcentajeDescuento(0.1);
         duraznos.setPorcentajeDescuento(0.15);
-
-        tienda.agregarProducto(CATEGORIA_BEBIDA, coca);
         agua.setPorcentajeDescuento(0.1);
+
+        // Se agregan los productos a la tienda
+        tienda.agregarProducto(CATEGORIA_BEBIDA, coca);
         tienda.agregarProducto(CATEGORIA_BEBIDA, agua);
         tienda.agregarProducto(CATEGORIA_ENVASADO,atun);
         tienda.agregarProducto(CATEGORIA_ENVASADO,salsaTomate);
@@ -61,7 +64,7 @@ public class AplicacionTienda {
         tiendas.forEach(tiendaActual -> System.out.println(tiendaActual.getNombre()));
 
         Tienda tiendaSeleccionada = null;
-        Map<Producto, Integer> carrito = new HashMap<>();
+        Map<Producto, Integer> carrito = new HashMap<>();   // CARRITO DONDE SE AÑADIRÁN LOS PRODUCTOS A COMPRAR
         boolean seguirComprando = true;
         while (true) {
             System.out.print("Ingrese el nombre de la tienda: ");
@@ -148,7 +151,7 @@ public class AplicacionTienda {
                 case 6:
                     List<String> productosComestibles = gestorProductos.obtenerComestiblesConMenorDescuento(scanner,tiendaSeleccionada.getProductosStock());
                     if (!productosComestibles.isEmpty()) {
-                        System.out.println("Productos comestibles con menor descuento: ");
+                        System.out.println("Productos comestibles no importados con menor descuento: ");
                         for (String productoInfo : productosComestibles) {
                             System.out.println(productoInfo);
                         }
@@ -173,7 +176,7 @@ public class AplicacionTienda {
         scanner.close();
     }
 
-    public static void mostrarMenu(){
+    public static void mostrarMenu(){                           // MENU DE LA APP
         System.out.println("Seleccione una opción: ");
         System.out.println("1. Añadir bebidas");
         System.out.println("2. Añadir productos envasados");
