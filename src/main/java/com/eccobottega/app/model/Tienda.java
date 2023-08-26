@@ -150,16 +150,7 @@ public class Tienda {
         return false;
     }
 
-
-
-
-
-
-
-
-
-
-private boolean estaDisponible(Producto producto, int cantidad) {
+    private boolean estaDisponible(Producto producto, int cantidad) {
 
         if (!producto.estaDisponible()) {
             System.out.println("El producto " + producto.getId() + " no está disponible para la venta.");
@@ -267,12 +258,6 @@ private boolean estaDisponible(Producto producto, int cantidad) {
 
         return false;
     }
-
-
-
-
-
-
     public void mostrarProductosPorCategoria() {
         for (Map.Entry<String, List<Producto>> entry : productosStock.entrySet()) {
             String categoria = entry.getKey();
@@ -289,8 +274,6 @@ private boolean estaDisponible(Producto producto, int cantidad) {
                 .filter(producto -> producto.getCantStock() > 0)
                 .collect(Collectors.toList());
     }
-
-
 
     public String getNombre() {
         return nombre;
